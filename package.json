@@ -1,0 +1,20 @@
+{
+  "name": "SQL-Library-Manager",
+  "version": "1.0.0",
+  "description": "8th techdegree project with treehouse",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karinaaltheaabad/SQL-Library-Manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karinaaltheaabad/SQL-Library-Manager/issues"
+  },
+  "homepage": "https://github.com/karinaaltheaabad/SQL-Library-Manager#readme"
+}
