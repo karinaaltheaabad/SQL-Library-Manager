@@ -1,20 +1,21 @@
 {
-  "name": "SQL-Library-Manager",
-  "version": "1.0.0",
-  "description": "8th techdegree project with treehouse",
-  "main": "index.js",
+  "name": "sql-library-manager",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/karinaaltheaabad/SQL-Library-Manager.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/karinaaltheaabad/SQL-Library-Manager/issues"
-  },
-  "homepage": "https://github.com/karinaaltheaabad/SQL-Library-Manager#readme"
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.7",
+    "pug": "^3.0.2",
+    "sequelize": "^6.6.2",
+    "sequelize-cli": "^6.2.0",
+    "sqlite3": "^5.0.2"
+  }
 }

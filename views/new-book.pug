@@ -1,0 +1,27 @@
+extends layout 
+
+block content
+    h1= title
+    if (errors)
+        h2(class="error") Oooops, an error occurred! 
+            each error in errors
+                ul(class="error")
+                    li= error.message
+    form(method='post' action='/books/new')
+        p 
+            label Title
+            input(name="title" type="text" id="title")
+        p
+            label Author 
+            input(name="author" type="text" id="author")
+        p
+            label Genre 
+            input(name="genre" type="text" id="genre")
+        p
+            label Year 
+            input(name="year" type="text" id="year")
+        p
+            input(type="submit" value="Create New Book")
+        p   
+            a.button(href="/") Cancel
+        
