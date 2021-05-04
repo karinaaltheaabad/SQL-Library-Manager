@@ -13,6 +13,12 @@ function asyncHandler(callback) {
     }
   }
 
+function throwError() {
+  const error = new Error(); 
+  error.status = 404; 
+  throw error; 
+}
+
   /**
  * displays all books in database
  */
@@ -41,7 +47,7 @@ router.get('/books', asyncHandler(async (req, res) => {
           book = await Book.build(req.body);
           res.render("new-book", { book, errors: error.errors, title: "New Book" })
         } else {
-          throw error;
+          throwError();
         }  
       }
   }));
@@ -55,7 +61,7 @@ router.get('/books', asyncHandler(async (req, res) => {
     if (book) {
       res.render("display-book", { book, title: book.title });
     } else {
-      res.render('page-not-found');
+      throwError();
     }
   }));
 
@@ -63,8 +69,13 @@ router.get('/books', asyncHandler(async (req, res) => {
    * shows book update form 
    */
   router.get('/books/:id/update', asyncHandler(async (req, res) => {
-    const book = await Book.findByPk(req.params.id);
-    res.render('update-book', { book, title: "Update Book"})
+    let book;
+    book = await Book.findByPk(req.params.id);
+    if (book) {
+      res.render('update-book', { book, title: "Update Book"})
+    } else {
+      throwError();
+    }
   }));
   
   /**
@@ -77,8 +88,6 @@ router.get('/books', asyncHandler(async (req, res) => {
       if (book) {
         await book.update(req.body);
         res.redirect('/books/' + book.id);
-      } else {
-        res.render('page-not-found');
       }
     } catch (error) {
       if(error.name === "SequelizeValidationError") { // checking the error
@@ -86,7 +95,7 @@ router.get('/books', asyncHandler(async (req, res) => {
         book.id = req.params.id; 
         res.render("update-book", { book, errors: error.errors, title: "Update Book" })
       } else {
-        res.render('page-not-found')
+        throwError();
       }  
     }
   }));
@@ -100,7 +109,7 @@ router.get('/books', asyncHandler(async (req, res) => {
       await book.destroy();
       res.redirect("/");
     } else {
-      res.render('page-not-found');
+      throwError();
     }
   }));  
   

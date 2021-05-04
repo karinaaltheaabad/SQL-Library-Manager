@@ -9,16 +9,16 @@ block content
                     li= error.message
     form(method='post' action='/books/new')
         p 
-            label Title
+            label(for="title") Title
             input(name="title" type="text" id="title")
         p
-            label Author 
+            label(for="author") Author 
             input(name="author" type="text" id="author")
         p
-            label Genre 
+            label(for="genre") Genre 
             input(name="genre" type="text" id="genre")
         p
-            label Year 
+            label(for="year") Year 
             input(name="year" type="text" id="year")
         p
             input(type="submit" value="Create New Book")

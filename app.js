@@ -37,20 +37,17 @@ app.use(function(req, res, next) {
   const pageNotFound = new Error();
   pageNotFound.status = 404; 
   message = "Oops! Page not found.";
-  next(pageNotFound);
+  res.status(404).render('page-not-found');
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  res.locals.error = err; 
-  res.status(res.error || 500);
-  
-  if (err.message === undefined) {
-    message = "Oops! Something went wrong."
+  if (err.status === 404) {
+    res.status(404).render('page-not-found');
+  } else {
+    err.message = err.message || 'Oops, looks like something went wrong on the server!';
+    res.status(err.status || 500 ).render('error', { error: err });
   }
-
-  console.log(err.status + " " + err.message);
-  res.render('error');
 });
 
 module.exports = app;
